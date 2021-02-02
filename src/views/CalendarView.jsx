@@ -1,10 +1,8 @@
 import React from "react";
 import FullCalendar from "@fullcalendar/react";
-import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { makeStyles, Grid } from "@material-ui/core";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import Header from "../containers/Header";
 import Sidebar from "../containers/Sidebar";
 import ClientDrawer from "../containers/ClientDrawer";
@@ -60,27 +58,6 @@ const CalendarView = () => {
     }
   };
 
-  const handleEventClick = (selectInfo) => {
-    // handleDateSelect(selectInfo, selectInfo.event.id); ================================================== para alterar evento
-    /*window.open(clickInfo.event.url, 'google-calendar-event', 'width=700,height=600'); =================== para google calendar
-
-    clickInfo.jsEvent.preventDefault() // don't navigate in main tab*/
-  };
-
-  /*document.addEventListener('DOMContentLoaded', function() { ============================================= para google calendar
-    let calendarEl = document.getElementById('calendar');
-    
-    let calendar = new Calendar(calendarEl, {
-      plugins: [ dayGridPlugin, googleCalendarPlugin ],
-      googleCalendarApiKey: 'AIzaSyC09ikpGuag5MAAC4zGhlHgXJVh9Xo3tOE',
-      events: {
-        googleCalendarId: 'emersonloran13@gmail.com'
-      }
-    });
-    
-    calendar.render();
-  })*/
-
   return (
     <div className={classes.calendarView}>
       <Header />
@@ -95,11 +72,7 @@ const CalendarView = () => {
           <Grid container direction="column">
             <Grid item>
               <FullCalendar
-                plugins={[
-                  dayGridPlugin,
-                  interactionPlugin,
-                  googleCalendarPlugin,
-                ]}
+                plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 locale="pt-br"
                 editable={true}
@@ -129,7 +102,6 @@ const CalendarView = () => {
         </Grid>
       </Grid>
       <DialogEditEvent isOpen={dialogIsOpen} setOpen={setDialogIsOpen} />
-      {/* <div className="calendar"></div> */}
     </div>
   );
 };

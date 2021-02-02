@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MeetingDrawer = () => {
   const classes = useStyles();
-  
+
   return (
     <Grid
       container
@@ -61,11 +61,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -96,11 +92,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -126,11 +118,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -156,11 +144,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -186,11 +170,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -216,11 +196,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -246,11 +222,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -276,11 +248,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -306,11 +274,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -336,11 +300,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -366,11 +326,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -396,11 +352,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />
@@ -426,11 +378,7 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Paper className={classes.client}>
-          <Grid
-            container
-            justify="space-between"
-            alignItems="center"
-          >
+          <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Icon color="primary">
                 <AccountCircleIcon />

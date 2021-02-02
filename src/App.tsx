@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import MeetingView from "./views/Meeting/MeetingView";
+import MeetingView from "./views/MeetingView";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core";
 import CalendarView from "./views/CalendarView";
 

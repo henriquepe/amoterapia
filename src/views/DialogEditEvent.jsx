@@ -11,7 +11,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 const useStyles = makeStyles((theme) => ({
   editEventDialog: {
     background: "#F5F5F5",
-    color: '#2F0959',
+    color: "#2F0959",
   },
   dialogInfo: {
     color: theme.palette.primary.main,
@@ -34,8 +34,8 @@ const DialogEditEvent = (props) => {
   const handleTextFieldChange = (textFieldEventName) => {
     eventName = textFieldEventName.target.value;
 
-    let title = prompt(eventName);
-  }
+    console.log(eventName);
+  };
 
   return (
     <div>
