@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MeetingDrawer = () => {
   const classes = useStyles();
-
+  
   return (
     <Grid
       container
