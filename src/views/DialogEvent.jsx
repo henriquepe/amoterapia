@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -7,9 +7,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { useDispatch } from "react-redux";
+import { addEvent } from "../store/Event/Event.actions";
 
 const useStyles = makeStyles((theme) => ({
-  editEventDialog: {
+  eventDialog: {
     background: "#F5F5F5",
     color: "#2F0959",
   },
@@ -21,8 +23,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DialogEditEvent = (props) => {
+const DialogEvent = (props) => {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
+
+  const [eventName, setEventName] = useState("");
+
+  const [firstDate, setFirstDate] = useState("");
+
+  const [lastDate, setLastDate] = useState("");
+
+  const eventInfos = {
+    eventName,
+    firstDate,
+    lastDate,
+  };
 
   const { isOpen, setOpen } = props;
 
@@ -30,22 +46,15 @@ const DialogEditEvent = (props) => {
     setOpen(false);
   };
 
-  let eventName = "";
-  const handleTextFieldChange = (textFieldEventName) => {
-    eventName = textFieldEventName.target.value;
-
-    console.log(eventName);
-  };
-
   return (
     <div>
       <Dialog
         open={isOpen}
         onClose={handleClose}
-        classes={{ paper: classes.editEventDialog }}
+        classes={{ paper: classes.eventDialog }}
       >
         <DialogTitle>Evento</DialogTitle>
-        <DialogContent dividers classes={{ paper: classes.editEventDialog }}>
+        <DialogContent dividers classes={{ paper: classes.eventDialog }}>
           <DialogContentText className={classes.dialogInfo}>
             Informações do evento
           </DialogContentText>
@@ -57,7 +66,7 @@ const DialogEditEvent = (props) => {
             multiline
             fullWidth
             color="primary"
-            onChange={handleTextFieldChange}
+            onChange={(e) => setEventName(e.target.value)}
             inputProps={{ className: classes.fieldsText }}
           />
           <Box style={{ display: "flex", justifyContent: "space-between" }}>
@@ -65,12 +74,14 @@ const DialogEditEvent = (props) => {
               type="date"
               margin="dense"
               color="primary"
+              onChange={(e) => setFirstDate(e.target.value)}
               inputProps={{ className: classes.fieldsText }}
             />
             <TextField
               type="date"
               margin="dense"
               color="primary"
+              onChange={(e) => setLastDate(e.target.value)}
               inputProps={{ className: classes.fieldsText }}
             />
           </Box>
@@ -79,7 +90,13 @@ const DialogEditEvent = (props) => {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button
+            onClick={(e) => {
+              dispatch(addEvent(eventInfos));
+              // handleClose;
+            }}
+            color="primary"
+          >
             Salvar
           </Button>
         </DialogActions>
@@ -88,4 +105,4 @@ const DialogEditEvent = (props) => {
   );
 };
 
-export default DialogEditEvent;
+export default DialogEvent;
