@@ -60,9 +60,9 @@ const ClientDrawer = (props) => {
           Próximos atendimentos:
         </Typography>
       </Grid>
-      {props.events.map((index) => {
+      {props.events.map((eventBlock) => {
         return (
-          <Grid item>
+          <Grid item key={eventBlock.id}>
             <Paper className={classes.client}>
               <Grid container justify="space-between" alignItems="center">
                 <Grid item>
@@ -72,10 +72,10 @@ const ClientDrawer = (props) => {
                 </Grid>
                 <Grid item>
                   <Typography color="primary" variant="subtitle2">
-                    {index.nome_evento}
+                    {eventBlock.nome_evento}
                   </Typography>
                   <Typography variant="body2" className={classes.scheduleText}>
-                    {index.data_inicial}
+                    {eventBlock.data_inicial}
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -109,10 +109,10 @@ const ClientDrawer = (props) => {
       </Grid>
       <Grid item>
         <Typography color="primary" variant="subtitle2">
-          {index.nome_evento}
+          {eventBlock.nome_evento}
         </Typography>
         <Typography variant="body2" className={classes.scheduleText}>
-          {index.data_inicial}
+          {eventBlock.data_inicial}
         </Typography>
       </Grid>
       <Grid item>

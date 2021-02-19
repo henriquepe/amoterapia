@@ -6,10 +6,9 @@ import { makeStyles, Grid } from "@material-ui/core";
 import Header from "../containers/Header";
 import Sidebar from "../containers/Sidebar";
 import ClientDrawer from "../containers/ClientDrawer";
-import DialogEvent from "./DialogEvent";
 import { connect, useDispatch } from "react-redux";
-import { Calendar } from "@fullcalendar/core";
-import { selectEvents } from "../store/Event/Event.actions";
+import { eventDate, selectEvents } from "../store/Event/Event.actions";
+import DialogEventView from "./DialogEventView";
 
 const useStyles = makeStyles((theme) => ({
   calendarView: {
@@ -22,6 +21,10 @@ const CalendarView = (props) => {
   const dispatch = useDispatch();
 
   const [events, setEvents] = React.useState([]);
+
+  const [event, setEvent] = React.useState({});
+
+  const [eventDialogOpen, setEventDialogOpen] = React.useState(false);
 
   const getEvents = () => {
     const obj = {
@@ -43,76 +46,17 @@ const CalendarView = (props) => {
 
   useEffect(()  => {
     getEvents();
-    // var calendarEl = document.getElementById('calendar');
-    // console.log(calendarEl)
-    // var calendar = new Calendar(calendarEl, {
-    //   timeZone: 'UTC',
-    //   events: [
-    //     {
-    //       id: 'a',
-    //       title: 'my event',
-    //       start: '2018-09-01'
-    //     }
-    //   ]
-    // })
-  })
+  }, )
 
-  const classes = useStyles();
-
-  const [dialogOpen, setDialogOpen] = React.useState(false);
-
-  let eventGuid = 0;
-  function createEventId() {
-    return String(eventGuid++);
-  }
-
-  const handleDateSelect = (selectInfo) => {
-    const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    calendarApi.addEvent({
-      id: createEventId(),
-      title: props.eventName,
-      start: props.firstDate,
-      end: props.lastDate,
-      allDay: true,
-    });
-
-    return calendarApi;
-  }
-
-  const handleEventClick = (selectedInfo) => {
-    const calendarApi = selectedInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
-
-    selectedInfo.event.remove();
-
-    calendarApi.addEvent({
-      id: createEventId(),
-      title: props.eventName,
-      start: props.firstDate,
-      end: props.lastDate,
-      allDay: true,
-    });
-  }
-
-  // const addEvent = (eventInfos) => {
+  // const removeEvent = (eventInfos) => {
   //   const calendarApi = eventInfos.view.calendar;
 
   //   calendarApi.unselect(); // clear date selection
 
   //   eventInfos.event.remove();
-
-  //   calendarApi.addEvent({
-  //     id: createEventId(),
-  //     title: props.eventName,
-  //     start: props.firstDate,
-  //     end: props.lastDate,
-  //     allDay: true,
-  //   });
   // }
+
+  const classes = useStyles();
 
   return (
     <div className={classes.calendarView}>
@@ -128,7 +72,6 @@ const CalendarView = (props) => {
           <Grid container direction="column">
             <Grid item>
               <FullCalendar
-                id="calendar"  //  asasasasasasasasasasaasasaasasasasasasasasasa
                 plugins={[dayGridPlugin, interactionPlugin]}
                 initialView="dayGridMonth"
                 locale="pt-br"
@@ -136,12 +79,14 @@ const CalendarView = (props) => {
                 selectable={true}
                 dayMaxEvents={true}
                 eventClick={(e) => {
-                  setDialogOpen(true);
-                  handleEventClick(e);
+                  setEventDialogOpen(true);
+                  setEvent(e.event);
+                  dispatch(eventDate(e.event.startStr))
                 }}
                 select={(e) => {
-                  setDialogOpen(true);
-                  handleDateSelect(e);
+                  setEventDialogOpen(true);
+                  setEvent(e.event);
+                  dispatch(eventDate(e.startStr))
                 }}
                 events={
                   events.map(index => {
@@ -164,17 +109,13 @@ const CalendarView = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <DialogEvent isOpen={dialogOpen} setOpen={setDialogOpen} /*onClose={addEvent(props.eventInfos)}*/></DialogEvent>
+      <DialogEventView isOpen={eventDialogOpen} setOpen={setEventDialogOpen} event={event}></DialogEventView>
     </div>
   );
 };
 
 function mapStateToProps (state) {
   return {
-    eventInfos: state.event,
-    eventName: state.event.eventName,
-    firstDate: state.event.firstDate,
-    lastDate: state.event.lastDate
   }
 }
 

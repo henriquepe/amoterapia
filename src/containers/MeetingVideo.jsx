@@ -15,8 +15,6 @@ const MeetingVideo = () => {
   const classes = useStyles();
 
   return (
-    // <div className={classes.meetingVideo}></div>
-
     <Grid container className={classes.meetingVideo}></Grid>
   );
 };

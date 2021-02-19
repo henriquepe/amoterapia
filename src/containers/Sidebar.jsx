@@ -13,7 +13,6 @@ import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import BlockRoundedIcon from "@material-ui/icons/BlockRounded";
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +49,7 @@ const Sidebar = () => {
           <ListItemIcon>{<PeopleRoundedIcon />}</ListItemIcon>
         </ListItem>
         <ListItem button>
-          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>
+          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>  
         </ListItem>
         <ListItem button>
           <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
