@@ -41,6 +41,31 @@ const useStyles = makeStyles((theme) => ({
 const MeetingDrawer = () => {
   const [gridHeight, setGridHeight] = useState(0);
 
+  const [notes, setNotes] = useState("");
+
+  const addNotes = () => {
+
+    const obj = {
+      tid: 'VF9BTk9UQUNPRVM6MDg0ODIy',
+      fid: 118,
+      data: {
+        TITULO: "TESTE", // titulo do evento
+        DATA: new Date(Date.now()).toDateString(),
+        TEXTO: notes,
+      },
+      type: 1,
+    }
+  
+    fetch('https://apps.blueprojects.com.br/amoterapia/Integration/Save', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(obj)
+      }).then((response) => response.json().then((responseJson) => {console.log("addNotes", responseJson)}));
+  }
+
   useEffect(() => {
     const height = document.getElementById("textFieldGridItem").clientHeight;
 
@@ -115,15 +140,27 @@ const MeetingDrawer = () => {
           multiline
           variant="outlined"
           rows={gridHeight / 2.8}
+          onChange={(e) => {
+            setNotes(e.target.value);
+          }}
         />
       </Grid>
       <Grid item>
-        <Button variant="contained" color="primary" className={classes.buttons}>
+        <Button
+        variant="contained"
+        color="primary"
+        className={classes.buttons}
+        onClick={addNotes}
+      >
           Salvar / Atualizar
         </Button>
       </Grid>
       <Grid item>
-        <Button variant="contained" color="primary" className={classes.buttons}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.buttons}
+        >
           Enviar para o cliente
         </Button>
       </Grid>

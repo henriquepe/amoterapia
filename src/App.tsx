@@ -7,6 +7,8 @@ import AtTimeMeetingView from "./views/AtTimeMeetingView";
 import LibraryView from "./views/LibraryView";
 import DialogContent from "./views/DialogContentView";
 import ClientView from "./views/ClientView";
+import RouterHistory from "./core/router/RouterHistory";
+import { Router, Switch, Route } from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
@@ -22,12 +24,13 @@ const theme = createMuiTheme({
 
 const App: FC = () => (
   <ThemeProvider theme={theme}>
-    {/* <MeetingView /> */}
-    {/* <CalendarView /> */}
-    {/* <TooSoonMeetingView /> */}
-    {/* <AtTimeMeetingView /> */}
-    {/* <LibraryView /> */}
-    <ClientView />
+    <Router history={RouterHistory}>
+      <Switch>
+        <Route path="/" exact component={CalendarView} />
+        <Route path="/client" component={ClientView} />
+        <Route path="/meeting" component={MeetingView} />
+      </Switch>
+    </Router>
   </ThemeProvider>
 );
 

@@ -1,5 +1,8 @@
-import { Button, Grid, makeStyles, Paper, Typography } from "@material-ui/core";
-import React from "react";
+import { Box, Button, Grid, Icon, makeStyles, Paper, Typography } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   clientData: {
@@ -11,10 +14,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
   },
   section: {
-    backgroundColor: "white",
     width: "20vw",
-    height: "53.14757481940144vh",
+    height: "73.47781217750259vh",
+    maxHeight: "70vh",
+    overflow: "auto",
+    marginRight: "1vw",
 
+    backgroundColor: "white",
     border: "1px solid #C3BACE",
     opacity: 1,
   },
@@ -32,25 +38,35 @@ const useStyles = makeStyles((theme) => ({
   contentText: {
     color: "#707070",
   },
-  buttons: {
-
-  },
+  buttons: {},
 }));
 
-const ClientData = () => {
+const ClientData = (props) => {
   const classes = useStyles();
 
-  return (
-    <Grid container className={classes.clientData}>
-      <Grid item>
-        <Grid container direction="column">
-          <Grid item>
-            <Paper variant="outlined" className={classes.section}>
+  const [notes, setNotes] = React.useState([]);
 
-            </Paper>
-          </Grid>
-        </Grid>
-      </Grid>
+  const [noteContent, setNoteContent] = React.useState("");
+
+  const getNotes = () => {
+    const obj = {
+      qid : 'ANOTACOES:ANOTACOES'
+    }
+  
+    fetch('https://apps.blueprojects.com.br/amoterapia/Integration/Query', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(obj)
+      }).then((response) => response.json()).then((responseJson) => {
+        setNotes(responseJson.list);
+      });
+  }
+
+  const onHandleClickArrow = (noteBlock) => {
+    return (
       <Grid item>
         <Grid container direction="column" spacing={4}>
           <Grid item>
@@ -60,12 +76,12 @@ const ClientData = () => {
                   <Grid container justify="space-between">
                     <Grid item>
                       <Typography variant="h5" className={classes.contentTitle}>
-                        Abordagem sobre a infância
+                        {noteBlock.titulo}
                       </Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="h7" className={classes.contentText}>
-                        Histórico: 08/09/2020 - 09:25
+                        Histórico: {noteBlock.data}
                       </Typography>
                     </Grid>
                   </Grid>
@@ -76,56 +92,18 @@ const ClientData = () => {
                     className={classes.contentText}
                     style={{ maxHeight: "47vh", overflow: "auto" }}
                   >
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua.
+                    {noteBlock.texto}
                   </Typography>
                 </Grid>
               </Grid>
             </Paper>
           </Grid>
           <Grid item>
-            <Button color="primary" variant="contained" className={classes.buttons}>
+            <Button
+              color="primary"
+              variant="contained"
+              className={classes.buttons}
+            >
               Vídeo 1
             </Button>
           </Grid>
@@ -136,8 +114,73 @@ const ClientData = () => {
           </Grid>
         </Grid>
       </Grid>
+    )
+  }
+
+  useEffect(() => {
+    getNotes();
+  }, )
+
+  return (
+    <Grid container className={classes.clientData}>
+      <Grid item>
+        <Grid container direction="column" spacing={6}>
+          <Grid item>
+            <Paper variant="outlined" className={classes.section}>
+              {notes.map((noteBlock) => {
+                return (
+                  <Grid item key={noteBlock.id}>
+                    <Paper className={classes.client}>
+                      <Grid
+                        container
+                        justify="space-between"
+                        alignItems="center"
+                      >
+                        <Grid item>
+                          <Icon color="primary">
+                            <AccountCircleIcon />
+                          </Icon>
+                        </Grid>
+                        <Grid item>
+                          <Typography color="primary" variant="subtitle2">
+                            {noteBlock.titulo}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            className={classes.scheduleText}
+                          >
+                            {noteBlock.data}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Box
+                            className={classes.arrowDiv}
+                            onClick={() => {
+                              setNoteContent(onHandleClickArrow(noteBlock));
+                            }}>
+                            <Icon>
+                              <ArrowRightIcon />
+                            </Icon>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </Paper>
+                  </Grid>
+                );
+              })}
+            </Paper>
+          </Grid>
+        </Grid>
+      </Grid>
+      { noteContent }
     </Grid>
   );
 };
 
-export default ClientData;
+function mapStateToProps(state) {
+  return {
+    events: state.event.events,
+  };
+}
+
+export default connect(mapStateToProps)(ClientData);

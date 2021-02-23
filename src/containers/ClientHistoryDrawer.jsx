@@ -75,7 +75,7 @@ import {
                       {eventBlock.nome_evento}
                     </Typography>
                     <Typography variant="body2" className={classes.scheduleText}>
-                      Último atendimento: 07/10/2020 {/*eventBlock.data_inicial*/}
+                      Último atendimento: {eventBlock.data_inicial}
                     </Typography>
                   </Grid>
                   <Grid item>

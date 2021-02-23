@@ -13,6 +13,7 @@ import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import BlockRoundedIcon from "@material-ui/icons/BlockRounded";
+import RouterHistory from "../core/router/RouterHistory";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +44,11 @@ const Sidebar = () => {
       <div className={classes.toolbar} />
       <List>
         <ListItem button>
-          <ListItemIcon>{<DateRangeIcon color="secondary" />}</ListItemIcon>
+          <ListItemIcon>
+            {<DateRangeIcon color="secondary" onClick={() => {
+          RouterHistory.push("/");
+        }}/>}
+          </ListItemIcon>
         </ListItem>
         <ListItem button>
           <ListItemIcon>{<PeopleRoundedIcon />}</ListItemIcon>

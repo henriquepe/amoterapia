@@ -2,20 +2,36 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import { Route, Router, Switch } from 'react-router-dom';
+import RouterHistory from "./core/router/RouterHistory";
+
+import MeetingView from "./views/MeetingView";
+import TooSoonMeetingView from "./views/TooSoonMeetingView";
+import CalendarView from "./views/CalendarView";
+import AtTimeMeetingView from "./views/AtTimeMeetingView";  
+import LibraryView from "./views/LibraryView";
+import DialogContent from "./views/DialogContentView";
+import ClientView from "./views/ClientView";
+import { ThemeProvider } from "styled-components";
+import { createMuiTheme } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#FF006C",
+    },
+    secondary: {
+      main: "#F2E232",
+    },
+  },
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
