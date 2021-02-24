@@ -4,6 +4,7 @@ import DateRangeIcon from '@material-ui/icons/DateRange';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import AtTimeImg from "../assets/img/imagem-02.png";
 import React from "react";
+import RouterHistory from "../core/router/RouterHistory";
 
 const useStyles = makeStyles((theme) => ({
   atTimeMeetingDisplay: {  
@@ -108,7 +109,13 @@ const AtTimeMeetingDisplay = () => {
             </Card>
           </Grid>
           <Grid item>
-            <Button variant="contained" className={classes.buttons}>
+            <Button
+              variant="contained"
+              className={classes.buttons}
+              onClick={() => {
+                RouterHistory.push("/videochamada");
+              }}
+            >
               Iniciar Atendimento
             </Button>
           </Grid>

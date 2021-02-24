@@ -4,10 +4,8 @@ import {
   Grid,
   Icon,
   Paper,
-  Box,
 } from "@material-ui/core";
 import React from "react";
-import { connect } from "react-redux";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
@@ -44,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientDrawer = (props) => {
+const AttendanceDrawer = (props) => {
   const classes = useStyles();
 
   return (
@@ -79,11 +77,16 @@ const ClientDrawer = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Box className={classes.arrowDiv}>
+                  <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    className={classes.arrowDiv}
+                  >
                     <Icon>
                       <ArrowRightIcon />
                     </Icon>
-                  </Box>
+                  </Grid>
                 </Grid>
               </Grid>
             </Paper>
@@ -126,10 +129,4 @@ const ClientDrawer = (props) => {
   </Paper>
 </Grid> */
 
-function mapStateToProps(state) {
-  return {
-    events: state.event.events,
-  };
-}
-
-export default connect(mapStateToProps)(ClientDrawer);
+export default AttendanceDrawer;

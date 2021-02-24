@@ -43,18 +43,29 @@ const Sidebar = () => {
     >
       <div className={classes.toolbar} />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            {<DateRangeIcon color="secondary" onClick={() => {
-          RouterHistory.push("/");
-        }}/>}
-          </ListItemIcon>
+        <ListItem
+          button
+          onClick={() => {
+            RouterHistory.push("/");
+          }}
+        >
+          <ListItemIcon>{<DateRangeIcon color="secondary" />}</ListItemIcon>
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            RouterHistory.push("/clientes");
+          }}
+        >
           <ListItemIcon>{<PeopleRoundedIcon />}</ListItemIcon>
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>  
+        <ListItem
+          button
+          onClick={() => {
+            RouterHistory.push("/biblioteca");
+          }}
+        >
+          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>
         </ListItem>
         <ListItem button>
           <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>

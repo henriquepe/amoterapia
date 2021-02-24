@@ -1,4 +1,4 @@
-import { makeStyles, Typography, Grid, Icon, BottomNavigation, BottomNavigationAction, Select, MenuItem, Paper, Box, ButtonGroup } from "@material-ui/core";
+import { makeStyles, Typography, Grid, Icon, BottomNavigation, BottomNavigationAction, Select, MenuItem, Paper, Box, ButtonGroup, Button } from "@material-ui/core";
 import React, { useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
@@ -76,7 +76,6 @@ const LibraryDrawer = () => {
       body: JSON.stringify(obj)
       }).then((response) => response.json()).then((responseJson) => {
         setContents(responseJson.list)
-        // dispatch(selectEvents(events));
       });
   }
 
@@ -182,17 +181,21 @@ const LibraryDrawer = () => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Box
+                  <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
                     className={classes.arrowDiv}
                     onClick={() => {
                       console.log(index)
                       setContent(index);
                       setContentDialogOpen(true);
-                    }}>
+                    }}
+                  >
                       <Icon>
                         <ArrowRightIcon />
                       </Icon>
-                  </Box>
+                  </Grid>
                 </Grid>
               </Grid>
             </Paper>

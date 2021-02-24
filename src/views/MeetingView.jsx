@@ -42,7 +42,7 @@ const MeetingView = () => {
           </Grid>
         </Grid>
         <Grid item xs={3}>
-          <Grid container style={{ height: "100%", paddingLeft: "5.1vw" }}>
+          <Grid container style={{ height: "100%", paddingLeft: "5.3vw" }}>
             <Grid item>
               <MeetingDrawer />
             </Grid>

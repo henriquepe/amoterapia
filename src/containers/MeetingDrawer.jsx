@@ -50,7 +50,7 @@ const MeetingDrawer = () => {
       fid: 118,
       data: {
         TITULO: "TESTE", // titulo do evento
-        DATA: new Date(Date.now()).toDateString(),
+        DATA: new Date(Date.now()).toLocaleDateString(),
         TEXTO: notes,
       },
       type: 1,

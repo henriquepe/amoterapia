@@ -5,9 +5,8 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { makeStyles, Grid } from "@material-ui/core";
 import Header from "../containers/Header";
 import Sidebar from "../containers/Sidebar";
-import ClientDrawer from "../containers/ClientDrawer";
+import AttendanceDrawer from "../containers/AttendanceDrawer";
 import { connect, useDispatch } from "react-redux";
-import { eventDate, selectEvents } from "../store/Event/Event.actions";
 import DialogEventView from "./DialogEventView";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +39,6 @@ const CalendarView = (props) => {
       body: JSON.stringify(obj)
       }).then((response) => response.json()).then((responseJson) => {
         setEvents(responseJson.list)
-        dispatch(selectEvents(events));
       });
   }
 
@@ -81,12 +79,10 @@ const CalendarView = (props) => {
                 eventClick={(e) => {
                   setEventDialogOpen(true);
                   setEvent(e.event);
-                  dispatch(eventDate(e.event.startStr))
                 }}
                 select={(e) => {
                   setEventDialogOpen(true);
                   setEvent(e.event);
-                  dispatch(eventDate(e.startStr))
                 }}
                 events={
                   events.map(index => {
@@ -104,7 +100,7 @@ const CalendarView = (props) => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.1vw" }}>
             <Grid item>
-              <ClientDrawer />
+              <AttendanceDrawer />
             </Grid>
           </Grid>
         </Grid>

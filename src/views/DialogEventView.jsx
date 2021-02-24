@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Icon, makeStyles, Typography } from "@material-ui/core";
+import { Box, Icon, makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,7 +7,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { connect, useDispatch } from "react-redux";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DialogEventView = (props) => {
-  const dispatch = useDispatch();
 
   const classes = useStyles();
 
@@ -41,8 +39,8 @@ const DialogEventView = (props) => {
   };
 
   const addEvent = () => {
-    const eventFirstDate = props.eventDate.slice(0,10) + " " + start + ":00"
-    const eventLastDate = props.eventDate.slice(0,10) + " " + end + ":00"
+    const eventFirstDate = props.event.startStr.slice(0,10) + " " + start + ":00"
+    const eventLastDate = props.event.startStr.slice(0,10) + " " + end + ":00"
 
     const obj = {
       tid: 'VF9FVkVOVE9TOjA3Mjc4NQ==',
@@ -153,10 +151,4 @@ const DialogEventView = (props) => {
   );
 };
 
-function mapStateToProps (state) {
-  return {
-    eventDate: state.event.eventDate,
-  }
-}
-
-export default connect(mapStateToProps)(DialogEventView);
+export default DialogEventView;
