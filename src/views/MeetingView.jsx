@@ -6,6 +6,11 @@ import MeetingName from "../containers/MeetingName";
 import MeetingVideo from "../containers/MeetingVideo";
 import MeetingDrawer from "../containers/MeetingDrawer";
 import { makeStyles, Grid } from "@material-ui/core";
+import { ThemeProvider } from 'styled-components';
+import {
+  MeetingProvider,
+  lightTheme
+} from 'amazon-chime-sdk-component-library-react';
 
 const useStyles = makeStyles((theme) => ({
   meetingView: {
@@ -34,11 +39,15 @@ const MeetingView = () => {
               <MeetingName />
             </Grid>
             <Grid item>
-              <MeetingVideo />
+              <ThemeProvider theme={lightTheme}>
+                <MeetingProvider>
+                  <MeetingVideo />
+                </MeetingProvider>
+              </ThemeProvider>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <MeetingControls />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
         <Grid item xs={3}>

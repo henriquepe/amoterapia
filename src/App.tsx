@@ -28,7 +28,8 @@ const App: FC = () => (
       <Switch>
         <Route path="/" exact component={CalendarView} />
         <Route path="/client" component={ClientView} />
-        <Route path="/meeting" component={MeetingView} />
+        <Route path="/attime" component={AtTimeMeetingView} />
+        <Route path="/meet" component={MeetingView} />
       </Switch>
     </Router>
   </ThemeProvider>
