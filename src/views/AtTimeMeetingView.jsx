@@ -2,9 +2,11 @@ import React from "react";
 import Header from "../containers/Header";
 import Sidebar from "../containers/Sidebar";
 import MeetingName from "../containers/MeetingName";
-import MeetingDrawer from "../containers/MeetingDrawer";
 import { makeStyles, Grid } from "@material-ui/core";
 import AtTimeMeetingDisplay from "../containers/AtTimeMeetingDisplay";
+import BeforeMeetingDrawer from "../containers/BeforeMeetingDrawer";
+import { connect } from "react-redux";
+import LibraryDrawer from "../containers/LibraryDrawer";
 
 const useStyles = makeStyles((theme) => ({
   atTimeMeetingView: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AtTimeMeetingView = () => {
+const AtTimeMeetingView = (props) => {
   const classes = useStyles();
 
   return (
@@ -35,14 +37,17 @@ const AtTimeMeetingView = () => {
             <Grid item>  
               <AtTimeMeetingDisplay />
             </Grid>
+<<<<<<< HEAD
             <Grid item>
             </Grid>
+=======
+>>>>>>> ce082c7668756f5467f0d1fabfb44da4ef14c160
           </Grid>
         </Grid>
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.3vw" }}>
             <Grid item>
-              <MeetingDrawer />
+              { props.openLibraryDrawer ? <LibraryDrawer /> : <BeforeMeetingDrawer /> }
             </Grid>
           </Grid>
         </Grid>
@@ -51,4 +56,10 @@ const AtTimeMeetingView = () => {
   );
 };
 
-export default AtTimeMeetingView;
+function mapStateToProps (state) {
+  return {
+    openLibraryDrawer: state.reducer.libraryDrawer
+  }
+}
+
+export default connect(mapStateToProps)(AtTimeMeetingView);

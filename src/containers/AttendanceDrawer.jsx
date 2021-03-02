@@ -4,12 +4,13 @@ import {
   Grid,
   Icon,
   Paper,
-  Box,
 } from "@material-ui/core";
 import React from "react";
-import { connect } from "react-redux";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
+import TooSoonMeetingView from "../views/TooSoonMeetingView";
+import AtTimeMeetingView from "../views/AtTimeMeetingView";
+import RouterHistory from "../core/router/RouterHistory";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -44,8 +45,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientDrawer = (props) => {
+const AttendanceDrawer = (props) => {
   const classes = useStyles();
+
+  const [atTimeMeeting, setAtTimeMeeting] = React.useState(false);
+
+  const [tooSoonMeeting, setTooSoonMeeting] = React.useState(false);
 
   return (
     <Grid
@@ -79,11 +84,19 @@ const ClientDrawer = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Box className={classes.arrowDiv}>
+                  <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    className={classes.arrowDiv}
+                    onClick={() => {
+                      new Date(Date.now()).toISOString().replace('T', ' ').slice(0, 16) === eventBlock.data_inicial ? RouterHistory.push('/estanahora') : RouterHistory.push('/muitocedo');
+                    }}
+                  >
                     <Icon>
                       <ArrowRightIcon />
                     </Icon>
-                  </Box>
+                  </Grid>
                 </Grid>
               </Grid>
             </Paper>
@@ -126,10 +139,4 @@ const ClientDrawer = (props) => {
   </Paper>
 </Grid> */
 
-function mapStateToProps(state) {
-  return {
-    events: state.event.events,
-  };
-}
-
-export default connect(mapStateToProps)(ClientDrawer);
+export default AttendanceDrawer;

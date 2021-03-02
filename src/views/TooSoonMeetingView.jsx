@@ -6,6 +6,7 @@ import MeetingName from "../containers/MeetingName";
 import MeetingDrawer from "../containers/MeetingDrawer";
 import { makeStyles, Grid } from "@material-ui/core";
 import TooSoonMeetingDisplay from "../containers/TooSoonMeetingDisplay";
+import BeforeMeetingDrawer from "../containers/BeforeMeetingDrawer";
 
 const useStyles = makeStyles((theme) => ({
   tooSoonMeetingView: {
@@ -36,15 +37,12 @@ const TooSoonMeetingView = () => {
             <Grid item>
               <TooSoonMeetingDisplay />
             </Grid>
-            <Grid item>
-              <MeetingControls />
-            </Grid>
           </Grid>
         </Grid>
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.3vw" }}>
             <Grid item>
-              <MeetingDrawer />
+              <BeforeMeetingDrawer />
             </Grid>
           </Grid>
         </Grid>

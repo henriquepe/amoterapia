@@ -14,6 +14,8 @@ import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import BlockRoundedIcon from "@material-ui/icons/BlockRounded";
 import RouterHistory from "../core/router/RouterHistory";
+import { useDispatch } from "react-redux";
+import { openLibraryDrawer } from "../Redux/Actions";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
 const Sidebar = () => {
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
+  const [ libraryDrawer, setlibraryDrawer ] = React.useState(false);
+
   return (
     <Drawer
       variant="permanent"
@@ -43,18 +49,30 @@ const Sidebar = () => {
     >
       <div className={classes.toolbar} />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            {<DateRangeIcon color="secondary" onClick={() => {
-          RouterHistory.push("/");
-        }}/>}
-          </ListItemIcon>
+        <ListItem
+          button
+          onClick={() => {
+            RouterHistory.push("/");
+          }}
+        >
+          <ListItemIcon>{<DateRangeIcon color="secondary" />}</ListItemIcon>
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            RouterHistory.push("/clientes");
+          }}
+        >
           <ListItemIcon>{<PeopleRoundedIcon />}</ListItemIcon>
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>  
+        <ListItem
+          button
+          onClick={() => {
+            setlibraryDrawer(true);
+            dispatch(openLibraryDrawer(libraryDrawer));
+          }}
+        >
+          <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>
         </ListItem>
         <ListItem button>
           <ListItemIcon>{<CreateRoundedIcon />}</ListItemIcon>
