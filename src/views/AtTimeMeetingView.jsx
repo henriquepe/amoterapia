@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "../containers/Header";
 import Sidebar from "../containers/Sidebar";
-import MeetingControls from "../containers/MeetingControls";
 import MeetingName from "../containers/MeetingName";
 import MeetingDrawer from "../containers/MeetingDrawer";
 import { makeStyles, Grid } from "@material-ui/core";
@@ -33,11 +32,10 @@ const AtTimeMeetingView = () => {
             <Grid item>
               <MeetingName />
             </Grid>
-            <Grid item>
+            <Grid item>  
               <AtTimeMeetingDisplay />
             </Grid>
             <Grid item>
-              <MeetingControls />
             </Grid>
           </Grid>
         </Grid>
