@@ -1,5 +1,5 @@
-import { Grid, makeStyles, Fab } from "@material-ui/core";
-import React from "react";
+import { Grid, makeStyles, Fab, Button, Card, CardContent, Divider, Icon, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 import { useMeetingManager, VideoTileGrid, useContentShareControls, useLocalVideo, useToggleLocalMute } from 'amazon-chime-sdk-component-library-react';
 import CallIcon from "@material-ui/icons/Call";
 import CallEndIcon from "@material-ui/icons/CallEnd";
@@ -7,13 +7,24 @@ import MicIcon from "@material-ui/icons/Mic";
 import MicOff from "@material-ui/icons/MicOff";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import ScreenShareIcon from "@material-ui/icons/ScreenShare";
-
+import VoiceChatIcon from '@material-ui/icons/VoiceChat';
+import DateRangeIcon from '@material-ui/icons/DateRange';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import AtTimeImg from "../assets/img/imagem-02.png";
 
 const useStyles = makeStyles((theme) => ({
   meetingVideo: {
     height: "70vh",
     
     background: "#4E4E4E 0% 0% no-repeat padding-box",
+    opacity: 1,
+    marginLeft: theme.spacing(3),
+  },
+
+  atTimeMeetingDisplay: {  
+    height: "70vh",
+
+    background: "#FFFFFF 0% 0% no-repeat padding-box",
     opacity: 1,
     marginLeft: theme.spacing(3),
   },
@@ -36,9 +47,31 @@ const useStyles = makeStyles((theme) => ({
   screenShareIcon: {
     marginRight: theme.spacing(2),
   },
+  atTimeContent: {
+    marginLeft: "2vw",
+  },
+  atTimeCard: {
+    width: "16.927083333333332vw",
+    background: "#EDDBEC 0% 0% no-repeat padding-box",
+    color: "#5C1BA6",
+    borderRadius: "25px",
+  },
+  attendanceCard: {
+    width: "20.15625vw",
+    background: "#EDDBEC 0% 0% no-repeat padding-box",
+    color: "#5C1BA6",
+    borderRadius: "25px",
+  },
+  buttons: {
+    width: "20.15625vw",
+    background: "#5C1BA6 0% 0% no-repeat padding-box;",
+    color: 'white'
+  },
 }));
 
 const MeetingVideo = () => {
+  const [test, setTest] = useState(false);
+
   const classes = useStyles();
 
   const meetingManager = useMeetingManager();
@@ -46,13 +79,15 @@ const MeetingVideo = () => {
   const { toggleVideo } = useLocalVideo();
   const { muted, toggleMute } = useToggleLocalMute();
 
-  const joinMeeting = async () => {
+  const testFunction = async () => {
+    // Faz a parada
+
     var obj = {}
 
     // Para debugar precisa usar: https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create'
     // Primeiro passo - https://cors-anywhere.herokuapp.com/ - Liberar request
     // Segundo passo usar - https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create'
-    const response = await fetch('https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create', {
+    const response = await fetch('https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -76,11 +111,15 @@ const MeetingVideo = () => {
 
     // At this point you can let users setup their devices, or start the session immediately
     await meetingManager.start();
+
+    setTest(!test);
   };
 
   const joinMeeting2 = async () => {
     var eMt = document.getElementById("mt");
     var eAtd = document.getElementById("atd");
+    // var eMt = testFunction.teste;
+    // var eAtd = testFunction.teste2;
 
     const mtdata = JSON.parse(eMt.value);
     const atddata = JSON.parse(eAtd.value);
@@ -98,50 +137,129 @@ const MeetingVideo = () => {
   };
 
   return (
-    <Grid container className={classes.meetingVideo}>
-        {/* <button onClick={joinMeeting}>Join</button> */}
-        <input id="mt" />
-        <input id="atd" />
-        {/* <button onClick={joinMeeting2}>Join2</button> */}
-          <VideoTileGrid noRemoteVideoView={<div>No one is sharing his video</div>} />
-        <Grid
-          container
-          justify="space-between"
-          alignItems="center"
-          className={classes.meetingControls}
-        >
-          <Grid item>
-            <Fab color="secondary" className={classes.CallIcon} onClick={joinMeeting}>
-              <CallIcon />
-            </Fab>
-          </Grid>
-          <Grid item>
-            <Fab color="primary" className={classes.CallIcon} onClick={joinMeeting2}>
-              <CallIcon />
-            </Fab>
-          </Grid>
-          <Grid item>
-            <Fab color="secondary" onClick={toggleMute}>
-              {muted ? <MicIcon /> : <MicOff />}
-            </Fab>
-          </Grid>
-          <Grid item>
-            <Fab color="secondary" onClick={toggleVideo}>
-              <VideocamIcon />
-            </Fab>
-          </Grid>
-          <Grid item>
-            <Fab color="secondary" className={classes.screenShareIcon} onClick={toggleContentShare}>
-              <ScreenShareIcon />
-            </Fab>
-          </Grid>
-          <Grid item>
-            <Fab color="primary" className={classes.endCallIcon}>
-              <CallEndIcon />
-            </Fab>
+    <div>
+      {test ? 
+      <div>
+      < Grid container className={classes.meetingVideo}>
+          {/* <button onClick={joinMeeting}>Join</button> */}
+          <input id="mt" />
+          <input id="atd" />
+          {/* <button onClick={joinMeeting2}>Join2</button> */}
+            <VideoTileGrid noRemoteVideoView={<div>No one is sharing his video</div>} />
+          <Grid
+            container
+            justify="space-between"
+            alignItems="center"
+            className={classes.meetingControls}
+          >
+            <Grid item>
+              <Fab color="primary" className={classes.CallIcon} onClick={joinMeeting2}>
+                <CallIcon />
+              </Fab>
+            </Grid>
+            <Grid item>
+              <Fab color="secondary" onClick={toggleMute}>
+                {muted ? <MicIcon /> : <MicOff />}
+              </Fab>
+            </Grid>
+            <Grid item>
+              <Fab color="secondary" onClick={toggleVideo}>
+                <VideocamIcon />
+              </Fab>
+            </Grid>
+            <Grid item>
+              <Fab color="secondary" className={classes.screenShareIcon} onClick={toggleContentShare}>
+                <ScreenShareIcon />
+              </Fab>
+            </Grid>
+            <Grid item>
+              <Fab color="primary" className={classes.endCallIcon}>
+                <CallEndIcon />
+              </Fab>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div> 
+      : 
+      <div>
+        <Grid
+          container
+          className={classes.atTimeMeetingDisplay}
+          alignItems="center"
+          justify="center"
+        >
+          <Grid item>
+            <Grid container>
+              <Grid item>
+                <img src={AtTimeImg} alt="Imagem está na hora" />
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid
+              container
+              direction="column"
+              spacing={3}
+              className={classes.atTimeContent}
+            >
+              <Grid item>
+                <Card className={classes.atTimeCard}>
+                  <CardContent>
+                    <Typography variant="h6" style={{ fontSize: 16 }}>
+                      Está na hora do show! Você já pode iniciar o atendimento.
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item>
+                <Card className={classes.attendanceCard}>
+                  <CardContent>
+                    <Grid container direction="row" alignItems="center" spacing={1}>
+                      <Grid item>
+                        <Icon color="default">
+                          <VoiceChatIcon />
+                        </Icon>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h6" gutterBottom>
+                          Atendimento com o Luiz
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Divider />
+                    <Grid container direction="row" alignItems="center" spacing={1}>
+                      <Grid item>
+                        <Icon color="default">
+                          <DateRangeIcon />
+                        </Icon>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h6">07 de Setembro 2020</Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid container direction="row" alignItems="center" spacing={1}>
+                      <Grid item>
+                        <Icon color="default">
+                          <AccessTimeIcon />
+                        </Icon>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h6">08:00 às 09:00</Typography>
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+                <Grid item>
+                  <Button variant="contained" className={classes.buttons} onClick={testFunction}>
+                    Iniciar Atendimento
+                  </Button>
+                </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>}
+    </div>
   );
 };
 
