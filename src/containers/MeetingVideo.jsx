@@ -21,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
   },
 
+  meetingVideo2: {
+    height: "70vh",
+    background: "#4E4E4E 0% 0% no-repeat padding-box",
+    opacity: 1,
+  },
+
+  meetingVideo3: {
+    height: "2vh",
+    background: "#4E4E4E 0% 0% no-repeat padding-box",
+    opacity: 1,
+  },
+
   atTimeMeetingDisplay: {  
     height: "70vh",
 
@@ -35,14 +47,14 @@ const useStyles = makeStyles((theme) => ({
     background: "#5C1BA6 0% 0% no-repeat padding-box",
     borderRadius: "0px 0px 10px 10px",
     opacity: 1,
-    marginLeft: theme.spacing(3),
+    marginLeft: theme.spacing(0),
     boxSizing: "border-box",
   },
   endCallIcon: {
-    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(3),
   },
   CallIcon: {
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(3),
   },
   screenShareIcon: {
     marginRight: theme.spacing(2),
@@ -70,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const MeetingVideo = () => {
-  const [test, setTest] = useState(false);
+  const [Status, setStatus] = useState(false);
 
   const classes = useStyles();
 
@@ -79,8 +91,7 @@ const MeetingVideo = () => {
   const { toggleVideo } = useLocalVideo();
   const { muted, toggleMute } = useToggleLocalMute();
 
-  const testFunction = async () => {
-    // Faz a parada
+  const StatusFunction = async () => {
 
     var obj = {}
 
@@ -112,14 +123,12 @@ const MeetingVideo = () => {
     // At this point you can let users setup their devices, or start the session immediately
     await meetingManager.start();
 
-    setTest(!test);
+    setStatus(!Status);
   };
 
   const joinMeeting2 = async () => {
     var eMt = document.getElementById("mt");
     var eAtd = document.getElementById("atd");
-    // var eMt = testFunction.teste;
-    // var eAtd = testFunction.teste2;
 
     const mtdata = JSON.parse(eMt.value);
     const atddata = JSON.parse(eAtd.value);
@@ -138,46 +147,43 @@ const MeetingVideo = () => {
 
   return (
     <div>
-      {test ? 
+      {Status ? 
       <div>
-      < Grid container className={classes.meetingVideo}>
-          {/* <button onClick={joinMeeting}>Join</button> */}
-          <input id="mt" />
-          <input id="atd" />
-          {/* <button onClick={joinMeeting2}>Join2</button> */}
-            <VideoTileGrid noRemoteVideoView={<div>No one is sharing his video</div>} />
-          <Grid
+        < Grid container className={classes.meetingVideo}>
+          <VideoTileGrid noRemoteVideoView={<div> <Grid container className={classes.meetingVideo2}> </Grid> </div>}/>
+          <Grid container className={classes.meetingVideo3}> <input id="mt" /> <input id="atd" /> </Grid>
+            <Grid
             container
             justify="space-between"
             alignItems="center"
             className={classes.meetingControls}
-          >
-            <Grid item>
-              <Fab color="primary" className={classes.CallIcon} onClick={joinMeeting2}>
-                <CallIcon />
-              </Fab>
+            >
+              <Grid item>
+                <Fab color="primary" className={classes.CallIcon} onClick={joinMeeting2}>
+                  <CallIcon />
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab color="secondary" onClick={toggleMute}>
+                  {muted ?  <MicOff /> : <MicIcon />}
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab color="secondary" onClick={toggleVideo}>
+                  <VideocamIcon />
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab color="secondary" className={classes.screenShareIcon} onClick={toggleContentShare}>
+                  <ScreenShareIcon />
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab color="primary" className={classes.endCallIcon}>
+                  <CallEndIcon />
+                </Fab>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Fab color="secondary" onClick={toggleMute}>
-                {muted ? <MicIcon /> : <MicOff />}
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab color="secondary" onClick={toggleVideo}>
-                <VideocamIcon />
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab color="secondary" className={classes.screenShareIcon} onClick={toggleContentShare}>
-                <ScreenShareIcon />
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab color="primary" className={classes.endCallIcon}>
-                <CallEndIcon />
-              </Fab>
-            </Grid>
-          </Grid>
         </Grid>
       </div> 
       : 
@@ -251,7 +257,7 @@ const MeetingVideo = () => {
                 </Card>
               </Grid>
                 <Grid item>
-                  <Button variant="contained" className={classes.buttons} onClick={testFunction}>
+                  <Button variant="contained" className={classes.buttons} onClick={StatusFunction}>
                     Iniciar Atendimento
                   </Button>
                 </Grid>
