@@ -37,9 +37,9 @@ const CalendarView = (props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(obj)
-      }).then((response) => response.json()).then((responseJson) => {
-        setEvents(responseJson.list)
-      });
+    }).then((response) => response.json()).then((responseJson) => {
+      setEvents(responseJson.list)
+    });
   }
 
   useEffect(()  => {
@@ -85,11 +85,11 @@ const CalendarView = (props) => {
                   setEvent(e.event);
                 }}
                 events={
-                  events.map(index => {
+                  events.map(event => {
                     return {
-                      title: index.nome_evento,
-                      start: index.data_inicial,
-                      end: index.data_final
+                      title: event.nome_evento,
+                      start: event.data_inicial,
+                      end: event.data_final
                     }
                   })
                 }
@@ -100,7 +100,7 @@ const CalendarView = (props) => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.1vw" }}>
             <Grid item>
-              <AttendanceDrawer />
+              <AttendanceDrawer events={events}/>
             </Grid>
           </Grid>
         </Grid>

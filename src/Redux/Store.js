@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from "redux";
-import eventReducer from "./Event/Event.reducer";
+import Reducer from "./Reducers";
 
 const rootReducer = combineReducers({
-  event: eventReducer,
+  reducer: Reducer,
 });
 
 const store = createStore(rootReducer);

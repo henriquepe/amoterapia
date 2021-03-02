@@ -124,20 +124,6 @@ const ClientData = (props) => {
               </Grid>
             </Paper>
           </Grid>
-          <Grid item>
-            <Button
-              color="primary"
-              variant="contained"
-              className={classes.buttons}
-            >
-              Vídeo 1
-            </Button>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2" className={classes.buttons}>
-              Tags:
-            </Typography>
-          </Grid>
         </Grid>
       </Grid>
     );

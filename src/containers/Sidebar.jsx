@@ -14,6 +14,8 @@ import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import BlockRoundedIcon from "@material-ui/icons/BlockRounded";
 import RouterHistory from "../core/router/RouterHistory";
+import { useDispatch } from "react-redux";
+import { openLibraryDrawer } from "../Redux/Actions";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = () => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const [ libraryDrawer, setlibraryDrawer ] = React.useState(false);
 
   return (
     <Drawer
@@ -62,7 +68,8 @@ const Sidebar = () => {
         <ListItem
           button
           onClick={() => {
-            RouterHistory.push("/biblioteca");
+            setlibraryDrawer(true);
+            dispatch(openLibraryDrawer(libraryDrawer));
           }}
         >
           <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>

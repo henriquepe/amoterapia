@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import store from "./store/store";
+import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import { Route, Router, Switch } from 'react-router-dom';
 import RouterHistory from "./core/router/RouterHistory";

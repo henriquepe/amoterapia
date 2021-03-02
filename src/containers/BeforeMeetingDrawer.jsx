@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
-import SendClientDialog from "../views/SendClientDialog";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -39,12 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MeetingDrawer = () => {
+const BeforeMeetingDrawer = () => {
   const [gridHeight, setGridHeight] = useState(0);
 
   const [notes, setNotes] = useState("");
-
-  const [sendClientDialogOpen, setSendClientDialogOpen] = React.useState(false);
 
   const addNotes = () => {
 
@@ -77,11 +74,7 @@ const MeetingDrawer = () => {
 
   const classes = useStyles();
 
-  const onClickSelectOption = () => {
-    window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=4E4D07C95B1937BD1B6F1A8ED3D53334"); // trocar por btn
-  }
-
-  const therapeuticInterview = [{ title: "Entrevista terapêutica", onClickSelectOption }];
+  const therapeuticInterview = [{ title: "Entrevista terapêutica" }];
 
   const lopicle = [{ title: "Lopículo" }];
 
@@ -104,7 +97,7 @@ const MeetingDrawer = () => {
         </Typography>
       </Grid>
       <Grid item>
-        {/* <Autocomplete
+        <Autocomplete
           className={classes.autocomplete}
           options={therapeuticInterview}
           getOptionLabel={(option) => option.title}
@@ -115,33 +108,17 @@ const MeetingDrawer = () => {
               variant="outlined"
             />
           )}
-        /> */}
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.buttons}
-          onClick={() => {window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=4E4D07C95B1937BD1B6F1A8ED3D53334")}}
-        >
-          Esquema Terapêutico
-        </Button>
+        />
       </Grid>
       <Grid item>
-        {/* <Autocomplete
+        <Autocomplete
           className={classes.autocomplete}
           options={lopicle}
           getOptionLabel={(option) => option.title}
           renderInput={(params) => (
             <TextField {...params} label="Lopículo" variant="outlined" />
           )}
-        /> */}
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.buttons}
-          onClick={() => {window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=C613E4009A63FBDFA022E24E7133F979")}}
-        >
-          Lopículo
-        </Button>
+        />
       </Grid>
       <Grid container justify="flex-start">
         <Grid item>
@@ -178,19 +155,8 @@ const MeetingDrawer = () => {
           Salvar / Atualizar
         </Button>
       </Grid>
-      <Grid item>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.buttons}
-          onClick={() => {setSendClientDialogOpen(true)}}
-        >
-          Enviar para o cliente
-        </Button>
-      </Grid>
-      <SendClientDialog sendClientDialogOpen={sendClientDialogOpen} setSendClientDialogOpen={setSendClientDialogOpen} />
     </Grid>
   );
 };
 
-export default MeetingDrawer;
+export default BeforeMeetingDrawer;
