@@ -107,11 +107,11 @@ const AtTimeMeetingDisplay = () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item>
-            <Button variant="contained" className={classes.buttons}>
-              Iniciar Atendimento
-            </Button>
-          </Grid>
+            <Grid item>
+              <Button variant="contained" className={classes.buttons}>
+                Iniciar Atendimento
+              </Button>
+            </Grid>
         </Grid>
       </Grid>
     </Grid>
