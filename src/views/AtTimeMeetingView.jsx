@@ -37,11 +37,6 @@ const AtTimeMeetingView = (props) => {
             <Grid item>  
               <AtTimeMeetingDisplay />
             </Grid>
-<<<<<<< HEAD
-            <Grid item>
-            </Grid>
-=======
->>>>>>> ce082c7668756f5467f0d1fabfb44da4ef14c160
           </Grid>
         </Grid>
         <Grid item xs={3}>

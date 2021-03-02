@@ -108,13 +108,6 @@ const AtTimeMeetingDisplay = () => {
               </CardContent>
             </Card>
           </Grid>
-<<<<<<< HEAD
-            <Grid item>
-              <Button variant="contained" className={classes.buttons}>
-                Iniciar Atendimento
-              </Button>
-            </Grid>
-=======
           <Grid item>
             <Button
               variant="contained"
@@ -126,7 +119,6 @@ const AtTimeMeetingDisplay = () => {
               Iniciar Atendimento
             </Button>
           </Grid>
->>>>>>> ce082c7668756f5467f0d1fabfb44da4ef14c160
         </Grid>
       </Grid>
     </Grid>

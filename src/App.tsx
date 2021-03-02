@@ -26,17 +26,14 @@ const App: FC = () => (
     <Router history={RouterHistory}>
       <Switch>
         <Route path="/" exact component={CalendarView} />
-<<<<<<< HEAD
         <Route path="/client" component={ClientView} />
         <Route path="/attime" component={AtTimeMeetingView} />
         <Route path="/meet" component={MeetingView} />
-=======
         <Route path="/clientes" component={ClientView} />
         <Route path="/videochamada" component={MeetingView} />
         <Route path="/biblioteca" component={LibraryView} />
         <Route path="/muitocedo" component={TooSoonMeetingView} />
         <Route path="/estanahora" component={AtTimeMeetingView} />
->>>>>>> ce082c7668756f5467f0d1fabfb44da4ef14c160
       </Switch>
     </Router>
   </ThemeProvider>
