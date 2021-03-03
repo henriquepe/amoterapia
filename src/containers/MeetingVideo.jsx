@@ -1,5 +1,5 @@
 import { Grid, makeStyles, Fab, Button, Card, CardContent, Divider, Icon, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useMeetingManager, VideoTileGrid, useContentShareControls, useLocalVideo, useToggleLocalMute } from 'amazon-chime-sdk-component-library-react';
 import CallIcon from "@material-ui/icons/Call";
 import CallEndIcon from "@material-ui/icons/CallEnd";
@@ -11,6 +11,8 @@ import VoiceChatIcon from '@material-ui/icons/VoiceChat';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import AtTimeImg from "../assets/img/imagem-02.png";
+import { hideMeetingDrawer } from "../Redux/Actions";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   meetingVideo: {
@@ -83,13 +85,21 @@ const useStyles = makeStyles((theme) => ({
 
 const MeetingVideo = () => {
   const [Status, setStatus] = useState(false);
+  
+  const [ contentShare, setContentShare ] = React.useState(false);
 
   const classes = useStyles();
+
+  const dispatch = useDispatch();
 
   const meetingManager = useMeetingManager();
   const { toggleContentShare } = useContentShareControls();
   const { toggleVideo } = useLocalVideo();
   const { muted, toggleMute } = useToggleLocalMute();
+
+  useEffect(() => {
+    dispatch(hideMeetingDrawer(contentShare));
+  })
 
   const StatusFunction = async () => {
 
@@ -174,7 +184,14 @@ const MeetingVideo = () => {
                 </Fab>
               </Grid>
               <Grid item>
-                <Fab color="secondary" className={classes.screenShareIcon} onClick={toggleContentShare}>
+                <Fab
+                  color="secondary"
+                  className={classes.screenShareIcon}
+                  onClick={() => {
+                    toggleContentShare();
+                    setContentShare(!contentShare);
+                  }}
+                >
                   <ScreenShareIcon />
                 </Fab>
               </Grid>

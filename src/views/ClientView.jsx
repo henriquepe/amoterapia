@@ -5,6 +5,8 @@ import ClientName from "../containers/ClientName";
 import { makeStyles, Grid } from "@material-ui/core";
 import ClientData from "../containers/ClientData";
 import ClientHistoryDrawer from "../containers/ClientHistoryDrawer";
+import { connect } from "react-redux";
+import LibraryDrawer from "../containers/LibraryDrawer";
 
 const useStyles = makeStyles((theme) => ({
   clientView: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClientView = () => {
+const ClientView = (props ) => {
   const classes = useStyles();
 
   return (
@@ -40,7 +42,7 @@ const ClientView = () => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.3vw" }}>
             <Grid item>
-              <ClientHistoryDrawer />
+              { props.openLibraryDrawer ? <LibraryDrawer /> : <ClientHistoryDrawer /> }
             </Grid>
           </Grid>
         </Grid>
@@ -49,4 +51,10 @@ const ClientView = () => {
   );
 };
 
-export default ClientView;
+function mapStateToProps (state) {
+  return {
+    openLibraryDrawer: state.reducer.libraryDrawer,
+  }
+}
+
+export default connect(mapStateToProps)(ClientView);

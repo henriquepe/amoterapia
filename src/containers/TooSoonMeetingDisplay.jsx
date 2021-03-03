@@ -101,7 +101,7 @@ const TooSoonMeetingDisplay = () => {
                     </Icon>
                   </Grid>
                   <Grid item>
-                    <Typography variant="h6">07 de Setembro 2020</Typography>
+                    <Typography variant="h6">04 de Março de 2021</Typography>
                   </Grid>
                 </Grid>
                 <Grid container direction="row" alignItems="center" spacing={1}>

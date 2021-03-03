@@ -1,5 +1,7 @@
 const INITIAL_STATE = {
-  libraryDrawer: false
+  libraryDrawer: false,
+
+  hideMeetingDrawer: false,
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -9,6 +11,12 @@ export default function (state = INITIAL_STATE, action) {
         ...state,
         libraryDrawer: action.payload
       }
+
+    case 'HIDE_MEETING_DRAWER':
+    return {
+      ...state,
+      hideMeetingDrawer: action.payload
+    }
 
     default:
       return state;

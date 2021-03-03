@@ -144,9 +144,9 @@ const ClientData = (props) => {
         <Paper variant="outlined" className={classes.section}>
           {notes.map((noteBlock) => {
             return (
-              <Grid container direction="column" spacing={8}>
+              <Grid container direction="column" spacing={8} key={noteBlock.id}>
                 <Grid item>
-                  <Paper className={classes.attendanceBlock} key={noteBlock.id}>
+                  <Paper className={classes.attendanceBlock}>
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
                         <Icon color="primary">

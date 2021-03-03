@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     background: "#FFFFFF 0% 0% no-repeat padding-box",
     opacity: 1,
-    height: "100%",
     width: "15.833333333333334vw",
   },
   titles: {
@@ -48,16 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
     color: "red",
   },
-  autocomplete: {
-    width: "14.947916666666666vw",
-    height: "4.953560371517028vh",
-
-    background: "#FFFFFF 0% 0% no-repeat padding-box",
-    border: "1px solid #5C1BA6",
-    borderRadius: "16px",
-    opacity: 1,
-    color: "red",
-  },
   contents: {
     height: "4.953560371517028vh",
     width: "14.947916666666666vw",
@@ -72,13 +61,6 @@ const useStyles = makeStyles((theme) => ({
 
     background: "#5C1BA6 0% 0% no-repeat padding-box",
     borderRadius: "0px 10px 10px 0px",
-    opacity: 1,
-  },
-  root: {
-    flexGrow: 1,
-    maxWidth: 300,
-    background: "#FAEDF9 0% 0% no-repeat padding-box",
-    borderRadius: "41px 0px 0px 41px",
     opacity: 1,
   },
 }));
@@ -150,9 +132,11 @@ const SendClientDialog = (props) => {
       open={isOpen}
       onClose={handleClose}
       classes={{ paper: classes.sendClientDialog }}
+      maxWidth="lg"
+      fullWidth
     >
       <Grid container>
-        <Grid item>
+        <Grid item xs={4}>
           <Grid
             container
             className={classes.drawer}
@@ -256,7 +240,16 @@ const SendClientDialog = (props) => {
             />
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item xs={4}>
+          <Grid container direction="column">
+            <Grid item>
+              <Typography variant="subtitle2" className={classes.titles}>
+                Preview:
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={4}>
           <Grid container direction="column">
             <Grid item>
               <Button

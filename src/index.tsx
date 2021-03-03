@@ -6,12 +6,10 @@ import store from "./Redux/Store";
 import { Provider } from "react-redux";
 import { Route, Router, Switch } from 'react-router-dom';
 import RouterHistory from "./core/router/RouterHistory";
-
 import MeetingView from "./views/MeetingView";
 import TooSoonMeetingView from "./views/TooSoonMeetingView";
 import CalendarView from "./views/CalendarView";
 import AtTimeMeetingView from "./views/AtTimeMeetingView";  
-import LibraryView from "./views/LibraryView";
 import DialogContent from "./views/DialogContentView";
 import ClientView from "./views/ClientView";
 import { ThemeProvider } from "styled-components";

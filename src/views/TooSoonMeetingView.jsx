@@ -7,6 +7,8 @@ import MeetingDrawer from "../containers/MeetingDrawer";
 import { makeStyles, Grid } from "@material-ui/core";
 import TooSoonMeetingDisplay from "../containers/TooSoonMeetingDisplay";
 import BeforeMeetingDrawer from "../containers/BeforeMeetingDrawer";
+import LibraryDrawer from "../containers/LibraryDrawer";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   tooSoonMeetingView: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TooSoonMeetingView = () => {
+const TooSoonMeetingView = (props) => {
   const classes = useStyles();
 
   return (
@@ -42,7 +44,7 @@ const TooSoonMeetingView = () => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.3vw" }}>
             <Grid item>
-              <BeforeMeetingDrawer />
+              { props.openLibraryDrawer ? <LibraryDrawer /> : <BeforeMeetingDrawer /> }
             </Grid>
           </Grid>
         </Grid>
@@ -51,4 +53,10 @@ const TooSoonMeetingView = () => {
   );
 };
 
-export default TooSoonMeetingView;
+function mapStateToProps (state) {
+  return {
+    openLibraryDrawer: state.reducer.libraryDrawer,
+  }
+}
+
+export default connect(mapStateToProps)(TooSoonMeetingView);

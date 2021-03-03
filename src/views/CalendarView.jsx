@@ -8,6 +8,7 @@ import Sidebar from "../containers/Sidebar";
 import AttendanceDrawer from "../containers/AttendanceDrawer";
 import { connect, useDispatch } from "react-redux";
 import DialogEventView from "./DialogEventView";
+import LibraryDrawer from "../containers/LibraryDrawer";
 
 const useStyles = makeStyles((theme) => ({
   calendarView: {
@@ -82,7 +83,7 @@ const CalendarView = (props) => {
                 }}
                 select={(e) => {
                   setEventDialogOpen(true);
-                  setEvent(e.event);
+                  setEvent(e);
                 }}
                 events={
                   events.map(event => {
@@ -100,7 +101,7 @@ const CalendarView = (props) => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.1vw" }}>
             <Grid item>
-              <AttendanceDrawer events={events}/>
+              { props.openLibraryDrawer ? <LibraryDrawer /> : <AttendanceDrawer events={events}/> }
             </Grid>
           </Grid>
         </Grid>
@@ -112,6 +113,7 @@ const CalendarView = (props) => {
 
 function mapStateToProps (state) {
   return {
+    openLibraryDrawer: state.reducer.libraryDrawer,
   }
 }
 

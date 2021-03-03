@@ -10,6 +10,7 @@ import {
   MeetingProvider,
   lightTheme
 } from 'amazon-chime-sdk-component-library-react';
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   meetingView: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MeetingView = () => {
+const MeetingView2 = () => {
   const classes = useStyles();
 
   return (
@@ -52,7 +53,7 @@ const MeetingView = () => {
         <Grid item xs={3}>
           <Grid container style={{ height: "100%", paddingLeft: "5.1vw" }}>
             <Grid item>
-              <MeetingDrawer />
+              { props.hideMeetingDrawer ? "" : <MeetingDrawer /> }
             </Grid>
           </Grid>
         </Grid>
@@ -61,4 +62,10 @@ const MeetingView = () => {
   );
 };
 
-export default MeetingView;
+function mapStateToProps (state) {
+  return {
+    hideMeetingDrawer: state.reducer.hideMeetingDrawer,
+  }
+}
+
+export default connect(mapStateToProps)(MeetingView2);

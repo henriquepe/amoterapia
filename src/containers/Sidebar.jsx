@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Drawer,
   List,
@@ -35,9 +36,17 @@ const useStyles = makeStyles((theme) => ({
 const Sidebar = () => {
   const classes = useStyles();
 
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const [ libraryDrawer, setlibraryDrawer ] = React.useState(false);
+
+  const [ itemColor, setItemColor ] = React.useState("inherit");
+
+  useEffect(()  => {
+    dispatch(openLibraryDrawer(libraryDrawer));
+  }, )
 
   return (
     <Drawer
@@ -52,10 +61,10 @@ const Sidebar = () => {
         <ListItem
           button
           onClick={() => {
-            RouterHistory.push("/");
+            history.push("/");
           }}
         >
-          <ListItemIcon>{<DateRangeIcon color="secondary" />}</ListItemIcon>
+          <ListItemIcon>{<DateRangeIcon color={itemColor} />}</ListItemIcon>
         </ListItem>
         <ListItem
           button
@@ -63,13 +72,12 @@ const Sidebar = () => {
             RouterHistory.push("/clientes");
           }}
         >
-          <ListItemIcon>{<PeopleRoundedIcon />}</ListItemIcon>
+          <ListItemIcon>{<PeopleRoundedIcon color={itemColor} />}</ListItemIcon>
         </ListItem>
         <ListItem
           button
           onClick={() => {
             setlibraryDrawer(true);
-            dispatch(openLibraryDrawer(libraryDrawer));
           }}
         >
           <ListItemIcon>{<LocalLibraryRoundedIcon />}</ListItemIcon>

@@ -4,3 +4,10 @@ export function openLibraryDrawer (setLibraryDrawer) {
         payload: setLibraryDrawer
     }
 }
+
+export function hideMeetingDrawer (setContentShare) {
+    return {
+        type: 'HIDE_MEETING_DRAWER',
+        payload: setContentShare
+    }
+}

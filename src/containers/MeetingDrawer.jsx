@@ -47,27 +47,30 @@ const MeetingDrawer = () => {
   const [sendClientDialogOpen, setSendClientDialogOpen] = React.useState(false);
 
   const addNotes = () => {
-
     const obj = {
-      tid: 'VF9BTk9UQUNPRVM6MDg0ODIy',
+      tid: "VF9BTk9UQUNPRVM6MDg0ODIy",
       fid: 118,
       data: {
-        TITULO: "TESTE", // titulo do evento
+        TITULO: "Título do Atendimento", // titulo do evento
         DATA: new Date(Date.now()).toLocaleDateString(),
         TEXTO: notes,
       },
       type: 1,
-    }
-  
-    fetch('https://apps.blueprojects.com.br/amoterapia/Integration/Save', {
-      method: 'POST',
+    };
+
+    fetch("https://apps.blueprojects.com.br/amoterapia/Integration/Save", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(obj)
-      }).then((response) => response.json().then((responseJson) => {console.log("addNotes", responseJson)}));
-  }
+      body: JSON.stringify(obj),
+    }).then((response) =>
+      response.json().then((responseJson) => {
+        console.log("addNotes", responseJson);
+      })
+    );
+  };
 
   useEffect(() => {
     const height = document.getElementById("textFieldGridItem").clientHeight;
@@ -77,11 +80,7 @@ const MeetingDrawer = () => {
 
   const classes = useStyles();
 
-  const onClickSelectOption = () => {
-    window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=4E4D07C95B1937BD1B6F1A8ED3D53334"); // trocar por btn
-  }
-
-  const therapeuticInterview = [{ title: "Entrevista terapêutica", onClickSelectOption }];
+  const therapeuticInterview = [{ title: "Entrevista terapêutica" }];
 
   const lopicle = [{ title: "Lopículo" }];
 
@@ -120,7 +119,11 @@ const MeetingDrawer = () => {
           variant="contained"
           color="primary"
           className={classes.buttons}
-          onClick={() => {window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=4E4D07C95B1937BD1B6F1A8ED3D53334")}}
+          onClick={() => {
+            window.open(
+              "https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=4E4D07C95B1937BD1B6F1A8ED3D53334"
+            );
+          }}
         >
           Esquema Terapêutico
         </Button>
@@ -138,7 +141,11 @@ const MeetingDrawer = () => {
           variant="contained"
           color="primary"
           className={classes.buttons}
-          onClick={() => {window.open("https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=C613E4009A63FBDFA022E24E7133F979")}}
+          onClick={() => {
+            window.open(
+              "https://apps.blueprojects.com.br/amoterapia/Runtime/FormEdit?id=0&form_id=C613E4009A63FBDFA022E24E7133F979"
+            );
+          }}
         >
           Lopículo
         </Button>
@@ -170,11 +177,11 @@ const MeetingDrawer = () => {
       </Grid>
       <Grid item>
         <Button
-        variant="contained"
-        color="primary"
-        className={classes.buttons}
-        onClick={addNotes}
-      >
+          variant="contained"
+          color="primary"
+          className={classes.buttons}
+          onClick={addNotes}
+        >
           Salvar / Atualizar
         </Button>
       </Grid>
@@ -183,12 +190,17 @@ const MeetingDrawer = () => {
           variant="contained"
           color="primary"
           className={classes.buttons}
-          onClick={() => {setSendClientDialogOpen(true)}}
+          onClick={() => {
+            setSendClientDialogOpen(true);
+          }}
         >
           Enviar para o cliente
         </Button>
       </Grid>
-      <SendClientDialog sendClientDialogOpen={sendClientDialogOpen} setSendClientDialogOpen={setSendClientDialogOpen} />
+      <SendClientDialog
+        sendClientDialogOpen={sendClientDialogOpen}
+        setSendClientDialogOpen={setSendClientDialogOpen}
+      />
     </Grid>
   );
 };

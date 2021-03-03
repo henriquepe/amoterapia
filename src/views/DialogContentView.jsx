@@ -47,6 +47,8 @@ const DialogContentView = (props) => {
     <Dialog
       open={isOpen}
       onClose={handleClose}
+      maxWidth="md"
+      fullWidth
       classes={{ paper: classes.contentDialog }}
     >
       <Grid container alignItems="center">

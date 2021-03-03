@@ -8,6 +8,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   eventDialog: {
@@ -38,8 +39,7 @@ const DialogEventView = (props) => {
   };
 
   const addEvent = () => {
-    const eventFirstDate =
-      props.event.startStr.slice(0, 10) + " " + start + ":00";
+    const eventFirstDate = props.event.startStr.slice(0, 10) + " " + start + ":00";
     const eventLastDate = props.event.startStr.slice(0, 10) + " " + end + ":00";
 
     const obj = {
@@ -74,7 +74,7 @@ const DialogEventView = (props) => {
       classes={{ paper: classes.eventDialog }}
     >
       <DialogTitle variant="h5">
-        {props.event ? props.event.title : "Evento"}
+        {props.event === {} ? props.event.title : "Evento"}
         {props.event ? (
           <Icon
             color="inherit"
@@ -147,4 +147,9 @@ const DialogEventView = (props) => {
   );
 };
 
-export default DialogEventView;
+function mapStateToProps (state) {
+  return {
+  }
+}
+
+export default connect(mapStateToProps)(DialogEventView);
