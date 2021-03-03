@@ -42,7 +42,7 @@ const Sidebar = () => {
 
   const [ libraryDrawer, setlibraryDrawer ] = React.useState(false);
 
-  const [ itemColor, setItemColor ] = React.useState("inherit");
+  const [ itemColor, setItemColor ] = React.useState("inherit"); // false (troca por negação), se true = secondary : "inherit"
 
   useEffect(()  => {
     dispatch(openLibraryDrawer(libraryDrawer));

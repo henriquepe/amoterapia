@@ -7,6 +7,7 @@ import AtTimeMeetingView from "./views/AtTimeMeetingView";
 import ClientView from "./views/ClientView";
 import RouterHistory from "./core/router/RouterHistory";
 import { Router, Switch, Route } from "react-router-dom";
+import MeetingView2 from "./views/MeetingView2";
 
 const theme = createMuiTheme({
   palette: {
@@ -27,6 +28,7 @@ const App: FC = () => (
         <Route path="/" exact component={CalendarView} />
         <Route path="/clientes" component={ClientView} />
         <Route path="/videochamada" component={MeetingView} />
+        <Route path="/videochamada2" component={MeetingView2} />
         <Route path="/muitocedo" component={TooSoonMeetingView} />
         <Route path="/estanahora" component={AtTimeMeetingView} />
       </Switch>

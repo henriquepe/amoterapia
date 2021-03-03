@@ -108,7 +108,7 @@ const MeetingVideo = () => {
     // Para debugar precisa usar: https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create'
     // Primeiro passo - https://cors-anywhere.herokuapp.com/ - Liberar request
     // Segundo passo usar - https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create'
-    const response = await fetch('https://cors-anywhere.herokuapp.com/https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create', {
+    const response = await fetch('https://b4jjyx5kfa.execute-api.us-east-2.amazonaws.com/dev/register/create', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

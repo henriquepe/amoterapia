@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MeetingView2 = () => {
+const MeetingView2 = (props) => {
   const classes = useStyles();
 
   return (
