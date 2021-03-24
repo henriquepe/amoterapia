@@ -8,6 +8,8 @@ import ClientView from "./views/ClientView";
 import RouterHistory from "./core/router/RouterHistory";
 import { Router, Switch, Route } from "react-router-dom";
 import MeetingView2 from "./views/MeetingView2";
+import HomeFindTherapist from "./views/HomeFindTherapist/HomeFindTherapist";
+import HomeFindTherapistSearch from "./views/HomeFindTherapistSearch/HomeFindTherapistSearch";
 
 const theme = createMuiTheme({
   palette: {
@@ -26,6 +28,8 @@ const App: FC = () => (
     <Router history={RouterHistory}>
       <Switch>
         <Route path="/" exact component={CalendarView} />
+        <Route path='/homecliente' component={HomeFindTherapist} />
+        <Route path='/homecliente2' component={HomeFindTherapistSearch} />
         <Route path="/clientes" component={ClientView} />
         <Route path="/videochamada" component={MeetingView} />
         <Route path="/videochamada2" component={MeetingView2} />
